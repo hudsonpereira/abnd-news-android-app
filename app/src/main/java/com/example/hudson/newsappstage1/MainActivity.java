@@ -1,6 +1,8 @@
 package com.example.hudson.newsappstage1;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     TextView noDataAvailableTextView;
 
+    TextView noInternetConnectionTextView;
+
     ProgressBar progressBar;
 
     @Override
@@ -35,12 +39,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         noDataAvailableTextView = findViewById(R.id.no_data);
+        noInternetConnectionTextView = findViewById(R.id.no_internet);
         progressBar = findViewById(R.id.progress_bar);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setAdapter(adapter);
 
-        getSupportLoaderManager().initLoader(1, null, this).forceLoad();
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            getSupportLoaderManager().initLoader(1, null, this).forceLoad();
+        } else {
+            progressBar.setVisibility(View.GONE);
+            noInternetConnectionTextView.setVisibility(View.VISIBLE);
+        }
     }
 
     @NonNull
