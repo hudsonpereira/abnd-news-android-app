@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="section_labels">
+        <item>Business</item>
+        <item>Science</item>
+        <item>Technology</item>
+    </string-array>
+
+    <string-array name="section_values">
+        <item>business</item>
+        <item>science</item>
+        <item>technology</item>
+    </string-array>
+</resources>

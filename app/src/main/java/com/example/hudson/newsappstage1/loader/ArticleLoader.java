@@ -17,6 +17,7 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
 
     public ArticleLoader(@NonNull Context context, String url) {
         super(context);
+
         this.url = url;
     }
 

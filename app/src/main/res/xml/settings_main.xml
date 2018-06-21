@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:title="@string/section"
+        android:key="@string/section_preference_key"
+        android:entries="@array/section_labels"
+        android:entryValues="@array/section_values"
+        android:defaultValue="@string/settings_sections_default_value"
+        android:summary="%s" />
+
+    <EditTextPreference
+        android:title="@string/query"
+        android:key="@string/query_preference_key"
+        android:summary="%s" />
+</PreferenceScreen>
