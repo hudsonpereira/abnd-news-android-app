@@ -7,9 +7,9 @@ public class Article {
 
     String section;
 
-    Date publicationDate;
+    String publicationDate;
 
-    public Article(String title, String section, Date publicationDate) {
+    public Article(String title, String section, String publicationDate) {
         this.title = title;
         this.section = section;
         this.publicationDate = publicationDate;
@@ -31,11 +31,11 @@ public class Article {
         this.section = section;
     }
 
-    public Date getPublicationDate() {
+    public String getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
     }
 }

@@ -56,7 +56,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
 
             articleTitle.setText(article.getTitle());
             articleSection.setText(article.getSection());
-            articleDate.setText(article.getPublicationDate().toString());
+            articleDate.setText(article.getPublicationDate());
         }
     }
 }

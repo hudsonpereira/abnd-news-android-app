@@ -6,13 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 
 import com.example.hudson.newsappstage1.pojo.Article;
+import com.example.hudson.newsappstage1.util.ArticleDownloader;
 
-import java.util.ArrayList;
-import java.util.Date;
+import org.json.JSONException;
+
 import java.util.List;
 
 public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
 
+    private static final String GUARDIAN_API_URL = "http://content.guardianapis.com/search?q=debates&api-key=8318e902-5a3e-4d1a-9ab7-abf247d3056b";
 
     public ArticleLoader(@NonNull Context context) {
         super(context);
@@ -21,13 +23,12 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
     @Nullable
     @Override
     public List<Article> loadInBackground() {
-        ArrayList<Article> articles = new ArrayList<>();
+        try {
+            return ArticleDownloader.parseJSON(ArticleDownloader.downloadArticles(GUARDIAN_API_URL));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        articles.add(new Article("Project Fantasy? German exam question debates Brexit reality", "World news", new Date()));
-        articles.add(new Article("The Guardian view on the Brexit bill debates: crash bang wallop | Editorial", "Opinion", new Date()));
-        articles.add(new Article("Universities are part of the solution to dysfunctional Brexit debates", "Science", new Date()));
-        articles.add(new Article("Putting the antisemitism debate in perspective | Letters", "News", new Date()));
-
-        return articles;
+        return null;
     }
 }

@@ -7,6 +7,9 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.hudson.newsappstage1.adapter.ArticlesAdapter;
 import com.example.hudson.newsappstage1.loader.ArticleLoader;
@@ -20,10 +23,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     ArticlesAdapter adapter = new ArticlesAdapter();
 
+    TextView noDataAvailableTextView;
+
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        noDataAvailableTextView = findViewById(R.id.no_data);
+        progressBar = findViewById(R.id.progress_bar);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setAdapter(adapter);
@@ -39,7 +49,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<Article>> loader, List<Article> articles) {
-        adapter.setArticles(articles);
+        if (articles != null && articles.size() > 0) {
+            adapter.setArticles(articles);
+        } else {
+            noDataAvailableTextView.setVisibility(View.VISIBLE);
+        }
+
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
