@@ -63,8 +63,21 @@ public class ArticleDownloader {
             String section = result.getString("sectionName");
             String date = result.getString("webPublicationDate");
             String link = result.getString("webUrl");
+            StringBuilder authorBuilder = new StringBuilder();
 
-            articles.add(new Article(title, section, date, link));
+            JSONArray tags = result.getJSONArray("tags");
+
+            for (int j = 0; j < tags.length(); j++) {
+                authorBuilder.append(tags.getJSONObject(j).getString("webTitle")).append(", ");
+            }
+
+            String author = "";
+
+            if (authorBuilder.length() > 0) {
+                author = authorBuilder.substring(0, authorBuilder.length() - 2);
+            }
+
+            articles.add(new Article(title, section, date, link, author));
         }
 
         return articles;

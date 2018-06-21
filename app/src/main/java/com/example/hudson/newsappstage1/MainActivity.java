@@ -25,6 +25,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Article>>,ArticlesAdapter.OnArticleAdapterInteraction {
 
+    private static final String GUARDIAN_API_URL = "http://content.guardianapis.com/search?api-key=8318e902-5a3e-4d1a-9ab7-abf247d3056b";
+
     ArticlesAdapter adapter = new ArticlesAdapter(this);
 
     TextView noDataAvailableTextView;
@@ -59,7 +61,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @NonNull
     @Override
     public Loader<List<Article>> onCreateLoader(int i, @Nullable Bundle bundle) {
-        return new ArticleLoader(this);
+
+        Uri.Builder builder = Uri.parse(GUARDIAN_API_URL).buildUpon();
+
+        builder.appendQueryParameter("show-tags", "contributor");
+
+        return new ArticleLoader(this, builder.toString());
     }
 
     @Override

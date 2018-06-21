@@ -1,21 +1,22 @@
 package com.example.hudson.newsappstage1.pojo;
 
-import java.util.Date;
-
 public class Article {
-    String title;
+    private String title;
 
-    String section;
+    private String section;
 
-    String publicationDate;
+    private String publicationDate;
 
-    String link;
+    private String link;
 
-    public Article(String title, String section, String publicationDate, String link) {
+    private String author;
+
+    public Article(String title, String section, String publicationDate, String link, String author) {
         this.title = title;
         this.section = section;
         this.publicationDate = publicationDate;
         this.link = link;
+        this.author = author;
     }
 
     public String getTitle() {
@@ -48,5 +49,13 @@ public class Article {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

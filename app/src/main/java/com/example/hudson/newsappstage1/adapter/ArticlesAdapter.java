@@ -2,6 +2,7 @@ package com.example.hudson.newsappstage1.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,10 +60,16 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
             TextView articleTitle = itemView.findViewById(R.id.article_title);
             TextView articleSection = itemView.findViewById(R.id.article_section);
             TextView articleDate = itemView.findViewById(R.id.article_date);
+            TextView articleAuthor = itemView.findViewById(R.id.article_author);
 
             articleTitle.setText(article.getTitle());
             articleSection.setText(article.getSection());
             articleDate.setText(article.getPublicationDate());
+            articleAuthor.setText(article.getAuthor());
+
+            if (TextUtils.isEmpty(article.getAuthor())) {
+                articleAuthor.setVisibility(View.GONE);
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

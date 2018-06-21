@@ -14,10 +14,18 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/article_author"
+            tools:text="Shaun Walker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
             android:id="@+id/article_title"
             tools:text="Letter: Invoking the Rev Colin Morris law of TV debates"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-            android:layout_alignParentTop="true"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_below="@id/article_author"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="@dimen/card_title_margin_bottom"
             android:layout_width="wrap_content"

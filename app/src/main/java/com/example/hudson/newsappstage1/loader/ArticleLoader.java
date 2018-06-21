@@ -13,18 +13,18 @@ import org.json.JSONException;
 import java.util.List;
 
 public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
+    private final String url;
 
-    private static final String GUARDIAN_API_URL = "http://content.guardianapis.com/search?q=debates&api-key=8318e902-5a3e-4d1a-9ab7-abf247d3056b";
-
-    public ArticleLoader(@NonNull Context context) {
+    public ArticleLoader(@NonNull Context context, String url) {
         super(context);
+        this.url = url;
     }
 
     @Nullable
     @Override
     public List<Article> loadInBackground() {
         try {
-            return ArticleDownloader.parseJSON(ArticleDownloader.downloadArticles(GUARDIAN_API_URL));
+            return ArticleDownloader.parseJSON(ArticleDownloader.downloadArticles(url));
         } catch (JSONException e) {
             e.printStackTrace();
         }
