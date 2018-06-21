@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/card_margin"
+    app:cardElevation="@dimen/card_elevation"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:padding="@dimen/card_padding"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/article_title"
+            tools:text="Letter: Invoking the Rev Colin Morris law of TV debates"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="@dimen/card_title_margin_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/article_section"
+            android:layout_below="@id/article_title"
+            tools:text="Media"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/article_date"
+            android:layout_below="@id/article_title"
+            android:layout_alignParentRight="true"
+            tools:text="06/21/2018"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
