@@ -9,10 +9,13 @@ public class Article {
 
     String publicationDate;
 
-    public Article(String title, String section, String publicationDate) {
+    String link;
+
+    public Article(String title, String section, String publicationDate, String link) {
         this.title = title;
         this.section = section;
         this.publicationDate = publicationDate;
+        this.link = link;
     }
 
     public String getTitle() {
@@ -37,5 +40,13 @@ public class Article {
 
     public void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

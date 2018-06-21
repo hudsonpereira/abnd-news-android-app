@@ -62,8 +62,9 @@ public class ArticleDownloader {
             String title = result.getString("webTitle");
             String section = result.getString("sectionName");
             String date = result.getString("webPublicationDate");
+            String link = result.getString("webUrl");
 
-            articles.add(new Article(title, section, date));
+            articles.add(new Article(title, section, date, link));
         }
 
         return articles;

@@ -1,5 +1,7 @@
 package com.example.hudson.newsappstage1;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -19,9 +21,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Article>> {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Article>>,ArticlesAdapter.OnArticleAdapterInteraction {
 
-    ArticlesAdapter adapter = new ArticlesAdapter();
+    ArticlesAdapter adapter = new ArticlesAdapter(this);
 
     TextView noDataAvailableTextView;
 
@@ -60,6 +62,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoaderReset(@NonNull Loader<List<Article>> loader) {
-        adapter = new ArticlesAdapter();
+        adapter = new ArticlesAdapter(this);
+    }
+
+    @Override
+    public void onArticleClicked(Article article) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(article.getLink()));
+        startActivity(intent);
     }
 }

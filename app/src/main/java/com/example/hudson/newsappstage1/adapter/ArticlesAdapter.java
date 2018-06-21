@@ -17,6 +17,12 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
 
     private List<Article> articleList = new ArrayList<>();
 
+    private OnArticleAdapterInteraction listener;
+
+    public ArticlesAdapter(OnArticleAdapterInteraction listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -30,7 +36,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int i) {
         Article article = articleList.get(i);
 
-        holder.bind(article);
+        holder.bind(article, listener);
     }
 
     @Override
@@ -49,7 +55,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
             super(itemView);
         }
 
-        void bind(Article article) {
+        void bind(final Article article, final OnArticleAdapterInteraction listener) {
             TextView articleTitle = itemView.findViewById(R.id.article_title);
             TextView articleSection = itemView.findViewById(R.id.article_section);
             TextView articleDate = itemView.findViewById(R.id.article_date);
@@ -57,6 +63,17 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
             articleTitle.setText(article.getTitle());
             articleSection.setText(article.getSection());
             articleDate.setText(article.getPublicationDate());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onArticleClicked(article);
+                }
+            });
         }
+    }
+
+    public interface OnArticleAdapterInteraction {
+        void onArticleClicked(Article article);
     }
 }
