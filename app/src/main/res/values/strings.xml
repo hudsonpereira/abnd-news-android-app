@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">News App Stage 1</string>
+    <string name="app_name">News App Stage 2</string>
     <string name="no_data_available">No data available.</string>
     <string name="no_internet">No internet connection.</string>
     <string name="settings_activity_label">Settings</string>
